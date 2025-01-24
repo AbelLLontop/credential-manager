@@ -64,12 +64,3 @@ export async function handleFileOpen(): Promise<ResponseReadFile | undefined> {
   }
 
 }
-
-// const log=(text:string):ResponseReadFile=>{
-//   return {
-//     route: "",
-//     success: false,
-//     message: text
-//   }
-
-// }

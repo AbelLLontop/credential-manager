@@ -1,0 +1,41 @@
+{
+  "lastPathTemporalFile": null,
+  "temporalsFiles":[
+    {
+      "path":"D:\\Programs\\test\\credentials.csv",
+      "title":"credential test",
+      "description":"a description",
+      "status":true
+    }
+  ],
+  "collections": [
+    {
+      "title": "Credenciales de acceso a la base de datos",
+      "description": "Archivo de ejemplo para almacenar las credenciales de acceso a la base de datos",
+      "privateKey": "MIIBVwIBADANBgkqhkiG9w0BAQEFAASCAT...",
+      "publicKey": "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL...",
+      "collection": [
+        {
+          "title": "Acceso a MongoDB",
+          "data": {
+            "user": "U2FsdGVkX1+F8J3Qz...",
+            "password": "U2FsdGVkX1+F8J3Qz...",
+            "host": "U2FsdGVkX1+F8J3Qz...",
+            "port": "U2FsdGVkX1+F8J3Qz...",
+            "database": "U2FsdGVkX1+F8J3Qz..."
+          }
+        },
+        {
+          "title": "Acceso a MySQL",
+          "data": {
+            "user": "U2FsdGVkX1+F8J3Qz...",
+            "password": "U2FsdGVkX1+F8J3Qz...",
+            "host": "U2FsdGVkX1+F8J3Qz...",
+            "port": "U2FsdGVkX1+F8J3Qz...",
+            "database": "U2FsdGVkX1+F8J3Qz..."
+          }
+        }
+      ]
+    }
+  ]
+}
