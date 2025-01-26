@@ -6,9 +6,6 @@ import { ResponseReadFile } from "./type";
 import { ConfigFolderManager } from "./config/ConfigFolderManager";
 
 
-
-
-
 export async function getInitialData(configFolderManager:ConfigFolderManager): Promise<ResponseReadFile | undefined> {
   try {
     const filePath = configFolderManager.getLastPathTemporalFile();
