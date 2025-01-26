@@ -3,14 +3,15 @@ import path from 'node:path';
 import fs from 'fs';
 import { parseCSVToJSON } from "./utils";
 import { ResponseReadFile } from "./type";
+import { ConfigFolderManager } from "./config/ConfigFolderManager";
 
-export async function getInitialData(): Promise<ResponseReadFile | undefined> {
+
+
+
+
+export async function getInitialData(configFolderManager:ConfigFolderManager): Promise<ResponseReadFile | undefined> {
   try {
-    const lastRoute = path.join(__dirname,'..','..','..', '../data/data.txt');
-    if (!fs.existsSync(lastRoute)) return
-    const content = fs.readFileSync(lastRoute, "utf-8");
-    const lines = content?.split('\n');
-    const filePath = lines?.[0];
+    const filePath = configFolderManager.getLastPathTemporalFile();
     if (!filePath) return;
     if(!fs.existsSync(filePath)) return
     const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -27,7 +28,7 @@ export async function getInitialData(): Promise<ResponseReadFile | undefined> {
   }
 }
 
-export async function handleFileOpen(): Promise<ResponseReadFile | undefined> {
+export async function handleFileOpen(configFolderManager:ConfigFolderManager): Promise<ResponseReadFile | undefined> {
   const { canceled, filePaths } = await dialog.showOpenDialog({
     filters: [
       { name: "CSV Files", extensions: ["csv"] },
@@ -48,12 +49,8 @@ export async function handleFileOpen(): Promise<ResponseReadFile | undefined> {
         message: `Formato de archivo no válido, solo se permiten archivos CSV.`
       }
     }
-    const outputTempRouteFolder = path.join(__dirname,'..','..','..', '../data');
     if(!file.success) return file;
-    if (!fs.existsSync(outputTempRouteFolder)) {
-      fs.mkdirSync(outputTempRouteFolder, { recursive: true });
-    }
-    fs.writeFileSync(path.join(outputTempRouteFolder, 'data.txt'), filePath, 'utf-8');
+    configFolderManager.setLastPathTemporalFile(filePath)
     return file;
   } catch (error) {
     return {

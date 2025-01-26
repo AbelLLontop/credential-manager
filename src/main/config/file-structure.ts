@@ -21,13 +21,18 @@ interface TemporalFile {
   status: boolean
 }
 
-export interface Config {
+export interface ConfigStructure {
   lastPathTemporalFile: string | null;
   temporalsFiles: TemporalFile[],
   collections: Collection[];
 }
 
-// const fileStructure = {
+export const FILE_MANAGER_EMPTY:ConfigStructure = {
+  lastPathTemporalFile: null,
+  temporalsFiles: [],
+  collections: []
+}
+// const FileManagerEmpty = {
 //   lastPathTemporalFile: null,
 //   temporalsFiles: [
 //     {

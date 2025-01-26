@@ -3,6 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { getInitialData, handleFileOpen } from './file-manager'
+import { ConfigFolderManager } from './config/ConfigFolderManager'
 
 function createWindow(): void {
   // Create the browser window.
@@ -17,6 +18,8 @@ function createWindow(): void {
       sandbox: false
     }
   })
+
+  ConfigFolderManager.getInstance("./data");
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -53,8 +56,14 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
-  ipcMain.handle('dialog:openFile', handleFileOpen)
-  ipcMain.handle('initial:openFile', getInitialData)
+  ipcMain.handle('dialog:openFile', () => {
+    const configFolderManager = ConfigFolderManager.getInstance();
+    return handleFileOpen(configFolderManager)
+  })
+  ipcMain.handle('initial:openFile', () => {
+    const configFolderManager = ConfigFolderManager.getInstance();
+    return getInitialData(configFolderManager)
+  })
 
   createWindow()
 
