@@ -7,7 +7,6 @@ import HomePage from './components/pages/Home/HomePage';
 
 function App(): JSX.Element {
   return (
-
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage />} />
